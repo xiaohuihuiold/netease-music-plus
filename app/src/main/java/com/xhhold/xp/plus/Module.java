@@ -1,12 +1,12 @@
 package com.xhhold.xp.plus;
 
-import de.robv.android.xposed.XposedBridge;
+import com.xhhold.xp.plus.load.ModuleLoaded;
 
 /**
  * @author nameh
  */
 public class Module {
     public Module(){
-        XposedBridge.log("测试加载");
+        ModuleLoaded.getInstance();
     }
 }

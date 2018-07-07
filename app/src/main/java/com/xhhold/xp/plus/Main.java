@@ -2,21 +2,14 @@ package com.xhhold.xp.plus;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 
 import com.xhhold.xp.plus.util.ModuleUtils;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 
 import dalvik.system.PathClassLoader;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
@@ -26,11 +19,11 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class Main implements IXposedHookLoadPackage{
     private final String modulePack = "com.xhhold.xp.plus";
     private final String handleClass = Module.class.getName();
-    private String moduleFile=null;
+    private String moduleFile;
 
     @Override
     public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) {
-        if(lpparam.packageName.equals(ModuleUtils.HOOK_PACKAGE)) {
+        if(lpparam.packageName.equals(ModuleUtils.PACKAGE_HOOK)) {
             XposedHelpers.findAndHookMethod(Application.class, "attach", Context.class, new XC_MethodHook() {
 
                 @Override
